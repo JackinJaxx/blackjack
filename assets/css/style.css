@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    background-color: #2F4F30;
+    color: white;
+}
+
+.titulo{
+    text-align: center;
+    background-color: black;
+    padding: 20px;
+    font-size: 25px;
+}
+
+.carta{
+    position: relative;
+    width: 150px;
+    left: 125px;
+    margin-left: -110px;
+}
+.row{
+    flex-direction: column;
+    margin-right: 0;    
+}
+
+#idjugador-cartas,#jugador-cartas{
+    height: 240px;
+}
