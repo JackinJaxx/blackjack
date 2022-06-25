@@ -15,7 +15,8 @@ const btnNuevo = document.querySelector("#btnNuevo");
 const btnPedir = document.querySelector("#btnPedir");
 const btnDetener = document.querySelector("#btnDetener");
 
-const imagenes = document.querySelector("#jugador-cartas");
+const imagenesJugador = document.querySelector("#jugador-cartas");
+const imagenesComputer = document.querySelector("#computadora-cartas");
 
 const puntajeJugador = document.querySelectorAll('small');
 
@@ -55,11 +56,24 @@ const valorCarta = (carta)=>{
             :valor*1;
 }
 
-const mostrarCarta = (carta)=>{
+
+
+//turn computer
+
+const turnComputer = (pointsMin)=>{
+    // do {
+       
+    // } while (condition);
+
+    const carta = pedirCarta();
+
+    puntosJugador+=valorCarta(carta);
+    puntajeJugador[1].innerHTML = puntosJugador;
+
     let imagen = document.createElement('img');
     imagen.src = `assets/cartas/${carta}`;
     imagen.classList.add('carta');
-    imagenes.append(imagen);
+    imagenesComputer.append(imagen);
 }
 
 //events
@@ -69,19 +83,25 @@ btnNuevo.addEventListener('click',()=>{
     crearDeck();
     puntajeJugador[0].innerText = 0;
     puntosJugador = 0;
-    while(imagenes.firstChild){
-        imagenes.removeChild(imagenes.firstChild);
+    while(imagenesJugador.firstChild){
+        imagenesJugador.removeChild(imagenesJugador.firstChild);
     }
     btnPedir.disabled = false;
     btnDetener.disabled = false;
 });
 
 btnPedir.addEventListener('click',() =>{
-    console.log(deck);
+    
     const carta = pedirCarta();
-    mostrarCarta(carta);
+    
     puntosJugador+=valorCarta(carta);
     puntajeJugador[0].innerHTML = puntosJugador;
+
+    const imagen = document.createElement('img');
+    imagen.src = `assets/cartas/${carta}`;
+    imagen.classList.add('carta');
+    imagenesJugador.append(imagen);
+
 
     if(puntosJugador>21){
         console.warn('Perdiste');
@@ -93,3 +113,5 @@ btnPedir.addEventListener('click',() =>{
         btnDetener.disabled = true;
     }
 });
+
+turnComputer(12);
